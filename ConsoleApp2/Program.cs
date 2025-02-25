@@ -7,6 +7,7 @@ class Program
     {
         Soal1 Soal1 = new Soal1();
         Soal2 Soal2 = new Soal2();
+        Soal3 Soal3 = new Soal3();
     
         Console.Write("Masukkan teks: ");
         string input = Console.ReadLine();
@@ -18,5 +19,8 @@ class Program
         // Soal 2: Jumlah & kurang bergantian
         int result = Soal2.ProcessNumbers(numberString);
         Console.WriteLine("Hasil operasi jumlah-kurang: " + result);
+        
+        string letterResult = Soal3.ConvertNumberToLetters(result);
+        Console.WriteLine("Hasil konversi ke huruf: " + letterResult);
     }
 }
