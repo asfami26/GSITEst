@@ -5,6 +5,6 @@ public class Soal1
     
     public string ConvertTextToNumbers(string input)
     {
-        return string.Join(" ", input.Select(c => Kamus.HurufKeAngka.ContainsKey(c) ? Kamus.HurufKeAngka[c].ToString() : ""));
+        return string.Join(" ", input.Select(c => Kamus.Data.ContainsKey(c) ? Kamus.Data[c].ToString() : ""));
     }
 }

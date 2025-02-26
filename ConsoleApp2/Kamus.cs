@@ -2,7 +2,7 @@ namespace ConsoleApp2;
 
 public class Kamus
 {
-    public static readonly Dictionary<char, int> HurufKeAngka = new Dictionary<char, int>
+    public static readonly Dictionary<char, int> Data = new Dictionary<char, int>
     {
         {'A', 0}, {'B', 1}, {'C', 1}, {'D', 1}, {'E', 2}, {'F', 3}, {'G', 3}, {'H', 3},
         {'I', 4}, {'J', 5}, {'K', 5}, {'L', 5}, {'M', 5}, {'N', 5}, {'O', 6}, {'P', 7},
@@ -13,10 +13,5 @@ public class Kamus
         {'w', 0}, {'x', 0}, {'y', 0}, {'z', 0}, {' ', 0}
     };
 
-    // Kamus angka ke huruf (Soal 3)
-    public static readonly Dictionary<int, char> AngkaKeHuruf = new Dictionary<int, char>
-    {
-        {0, 'A'}, {1, 'B'}, {2, 'E'}, {3, 'F'}, {4, 'I'}, {5, 'J'},
-        {6, 'N'}, {7, 'O'}, {8, 'U'}, {9, 'V'}
-    };
+   
 }

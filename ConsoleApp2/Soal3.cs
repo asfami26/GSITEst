@@ -1,39 +1,59 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConsoleApp2;
 
-public class Soal3
+namespace ConsoleApp2
 {
-    public string ConvertNumberToLetters(int number)
+    public class Soal3
     {
-        number = Math.Abs(number); 
+        public string ConvertNumberToLetters(int number)
+        {
+            number = Math.Abs(number); 
+            List<char> letterResult = new List<char>(); 
+            int sum = 0;
 
-        List<int> hasilDigit = new List<int>();
-
-        //Saya tak paham di sini makanya saya hardcode sesuai string yang di minta
-        if (number == 12)
-        {
-            hasilDigit = new List<int> { 0, 1, 2, 3, 4, 0, 1, 0, 1 };
-        }
-        else if (number == 16)
-        {
-            hasilDigit = new List<int> { 0, 1, 2, 3, 4, 5, 0, 1 };
-        }
-        else
-        {
             
-            int total = 0;
-            hasilDigit.Add(0);
-            foreach (char digit in number.ToString())
+            var sortedKamus = Kamus.Data
+                .Where(k => k.Key >= 'A' && k.Key <= 'Z') 
+                .GroupBy(k => k.Value) 
+                .Select(g => g.First()) 
+                .OrderBy(k => k.Key) 
+                .ToList();
+
+            int index = 0;
+            HashSet<char> usedLetters = new HashSet<char>(); 
+            bool restarted = false; 
+
+            while (sum < number)
             {
-                total += int.Parse(digit.ToString());
-                hasilDigit.Add(total % 10); 
+                var current = sortedKamus[index];
+                
+                if (!usedLetters.Contains(current.Key) && (sum + current.Value <= number))
+                {
+                    sum += current.Value;
+                    letterResult.Add(current.Key);
+                    usedLetters.Add(current.Key);
+                }
+
+                index++;
+
+               
+                if (index >= sortedKamus.Count)
+                {
+                    if (sum < number) 
+                    {
+                        index = 0;
+                        usedLetters.Clear(); 
+                        restarted = true; 
+                    }
+                    else
+                    {
+                        break; 
+                    }
+                }
             }
+
+            return string.Join("", letterResult);
         }
-        
-        List<char> hasilHuruf = hasilDigit.Select(d => Kamus.AngkaKeHuruf[d]).ToList();
-        Console.WriteLine($"Formatted Digits: {string.Join(" + ", hasilDigit)}");
-        return string.Join("", hasilHuruf);
     }
 }
